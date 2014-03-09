@@ -3,6 +3,6 @@
 
     <string name="app_name">KaiApp</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="welcome">Welcome to KaiApp, where magic happens everywhere</string>
 
 </resources>
