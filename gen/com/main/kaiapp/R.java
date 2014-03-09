@@ -25,13 +25,16 @@ public final class R {
         public static final int sarahkai=0x7f020001;
     }
     public static final class id {
-        public static final int action_settings=0x7f080000;
+        public static final int action_settings=0x7f090000;
+    }
+    public static final class integer {
+        public static final int google_play_services_version=0x7f070000;
     }
     public static final class layout {
         public static final int activity_kai_main=0x7f030000;
     }
     public static final class menu {
-        public static final int kai_main=0x7f070000;
+        public static final int kai_main=0x7f080000;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
