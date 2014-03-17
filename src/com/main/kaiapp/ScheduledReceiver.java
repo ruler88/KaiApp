@@ -23,13 +23,7 @@ public class ScheduledReceiver extends BroadcastReceiver {
 	
 	public void startSync() {
 		if (mContext.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
-			
-			Handler handler = new Handler();
-			handler.postDelayed(new Runnable() {
-			    public void run() {
-			    	launchProcessSync();
-			    }
-			 }, 120000); //Every 120000 ms (2 minutes)
+			launchProcessSync();
 		} else {
 			Toast.makeText(mContext, "Camera unavailable", Toast.LENGTH_LONG).show();
 		}
