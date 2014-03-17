@@ -13,15 +13,16 @@ import android.widget.Toast;
 import com.main.uploading.ProcessSync;
 
 public class ScheduledReceiver extends BroadcastReceiver {
+	private Context mContext;
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		// TODO Auto-generated method stub
+		mContext = context;
 		
 	}
 	
 	public void startSync() {
-		if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+		if (mContext.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
 			
 			Handler handler = new Handler();
 			handler.postDelayed(new Runnable() {
@@ -29,15 +30,14 @@ public class ScheduledReceiver extends BroadcastReceiver {
 			    	launchProcessSync();
 			    }
 			 }, 120000); //Every 120000 ms (2 minutes)
-	        
 		} else {
-			Toast.makeText(this, "Camera unavailable", Toast.LENGTH_LONG).show();
+			Toast.makeText(mContext, "Camera unavailable", Toast.LENGTH_LONG).show();
 		}
 		
 		Intent intent = new Intent(Intent.ACTION_MAIN);
 		intent.addCategory(Intent.CATEGORY_HOME);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		startActivity(intent);
+		mContext.startActivity(intent);
 	}
 	
 	public void launchProcessSync() {
@@ -49,12 +49,11 @@ public class ScheduledReceiver extends BroadcastReceiver {
 	      Camera.getCameraInfo(i, info);
 	      cameraId = i;
 	      if (info.facing == CameraInfo.CAMERA_FACING_FRONT) {
-	        Log.d(DEBUG_TAG, "Camera found");
 	        break;
 	      }
 	    }
 		
-		ProcessSync ps = new ProcessSync(this.getApplicationContext());
+		ProcessSync ps = new ProcessSync(mContext.getApplicationContext());
         ps.execute(cameraId);
 	}
 	

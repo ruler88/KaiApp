@@ -23,13 +23,16 @@ public class KaiMain extends Activity {
 	
 	private Button syncButton;
 	private Camera camera;
+	private Context mContext;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_kai_main);
 		
+		mContext = this;
 		AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+		
 		
 		addListenerOnButton();
 	}
@@ -56,7 +59,8 @@ public class KaiMain extends Activity {
 		syncButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				ScheduledReceiver.startSync();
+				Toast.makeText(mContext, "Don't press me mofo", Toast.LENGTH_SHORT).show();
+				//ScheduledReceiver.startSync();
 			}
 		});
 	}
