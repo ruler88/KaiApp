@@ -1,22 +1,19 @@
 package com.main.kaiapp;
 
+import java.util.GregorianCalendar;
+
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.hardware.Camera;
-import android.hardware.Camera.CameraInfo;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
-
-import com.main.uploading.ProcessSync;
 
 public class KaiMain extends Activity {
 	private final static String DEBUG_TAG = "KaiAppMain";
@@ -30,9 +27,12 @@ public class KaiMain extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_kai_main);
 		
+		Long time = new GregorianCalendar().getTimeInMillis()+24*60*60*1000;
+		
 		mContext = this;
 		AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-		
+		Intent intentAlarm = new Intent(this, ScheduledReceiver.class);
+		alarmManager.set(AlarmManager.RTC_WAKEUP,time, PendingIntent.getBroadcast(this,1,  intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT));
 		
 		addListenerOnButton();
 	}
