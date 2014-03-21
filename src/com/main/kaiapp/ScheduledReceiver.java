@@ -18,7 +18,7 @@ public class ScheduledReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		mContext = context;
-		
+		startSync();
 	}
 	
 	public void startSync() {

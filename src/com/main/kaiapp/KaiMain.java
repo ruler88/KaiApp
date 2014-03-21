@@ -49,12 +49,8 @@ public class KaiMain extends Activity {
 	
 	@Override
 	protected void onPause() {
-	    if (camera != null) {
-	      camera.release();
-	      camera = null;
-	    }
 	    super.onPause();
-	  }
+	}
 	
 	
 	private void addListenerOnButton() {
